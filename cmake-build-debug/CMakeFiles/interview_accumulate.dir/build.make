@@ -57,22 +57,9 @@ include CMakeFiles/interview_accumulate.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/interview_accumulate.dir/flags.make
 
-CMakeFiles/interview_accumulate.dir/main.cpp.o: CMakeFiles/interview_accumulate.dir/flags.make
-CMakeFiles/interview_accumulate.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/Program_Cpp/interview_accumulate/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/interview_accumulate.dir/main.cpp.o"
-	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/interview_accumulate.dir/main.cpp.o -c /cygdrive/d/Program_Cpp/interview_accumulate/main.cpp
-
-CMakeFiles/interview_accumulate.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/interview_accumulate.dir/main.cpp.i"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/Program_Cpp/interview_accumulate/main.cpp > CMakeFiles/interview_accumulate.dir/main.cpp.i
-
-CMakeFiles/interview_accumulate.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/interview_accumulate.dir/main.cpp.s"
-	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/Program_Cpp/interview_accumulate/main.cpp -o CMakeFiles/interview_accumulate.dir/main.cpp.s
-
 CMakeFiles/interview_accumulate.dir/functions.cpp.o: CMakeFiles/interview_accumulate.dir/flags.make
 CMakeFiles/interview_accumulate.dir/functions.cpp.o: ../functions.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/Program_Cpp/interview_accumulate/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/interview_accumulate.dir/functions.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/Program_Cpp/interview_accumulate/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/interview_accumulate.dir/functions.cpp.o"
 	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/interview_accumulate.dir/functions.cpp.o -c /cygdrive/d/Program_Cpp/interview_accumulate/functions.cpp
 
 CMakeFiles/interview_accumulate.dir/functions.cpp.i: cmake_force
@@ -83,16 +70,29 @@ CMakeFiles/interview_accumulate.dir/functions.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/interview_accumulate.dir/functions.cpp.s"
 	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/Program_Cpp/interview_accumulate/functions.cpp -o CMakeFiles/interview_accumulate.dir/functions.cpp.s
 
+CMakeFiles/interview_accumulate.dir/main.cpp.o: CMakeFiles/interview_accumulate.dir/flags.make
+CMakeFiles/interview_accumulate.dir/main.cpp.o: ../main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/cygdrive/d/Program_Cpp/interview_accumulate/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/interview_accumulate.dir/main.cpp.o"
+	/usr/bin/c++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/interview_accumulate.dir/main.cpp.o -c /cygdrive/d/Program_Cpp/interview_accumulate/main.cpp
+
+CMakeFiles/interview_accumulate.dir/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/interview_accumulate.dir/main.cpp.i"
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /cygdrive/d/Program_Cpp/interview_accumulate/main.cpp > CMakeFiles/interview_accumulate.dir/main.cpp.i
+
+CMakeFiles/interview_accumulate.dir/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/interview_accumulate.dir/main.cpp.s"
+	/usr/bin/c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /cygdrive/d/Program_Cpp/interview_accumulate/main.cpp -o CMakeFiles/interview_accumulate.dir/main.cpp.s
+
 # Object files for target interview_accumulate
 interview_accumulate_OBJECTS = \
-"CMakeFiles/interview_accumulate.dir/main.cpp.o" \
-"CMakeFiles/interview_accumulate.dir/functions.cpp.o"
+"CMakeFiles/interview_accumulate.dir/functions.cpp.o" \
+"CMakeFiles/interview_accumulate.dir/main.cpp.o"
 
 # External object files for target interview_accumulate
 interview_accumulate_EXTERNAL_OBJECTS =
 
-interview_accumulate.exe: CMakeFiles/interview_accumulate.dir/main.cpp.o
 interview_accumulate.exe: CMakeFiles/interview_accumulate.dir/functions.cpp.o
+interview_accumulate.exe: CMakeFiles/interview_accumulate.dir/main.cpp.o
 interview_accumulate.exe: CMakeFiles/interview_accumulate.dir/build.make
 interview_accumulate.exe: CMakeFiles/interview_accumulate.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/cygdrive/d/Program_Cpp/interview_accumulate/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable interview_accumulate.exe"

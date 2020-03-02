@@ -1,6 +1,11 @@
 cmake_minimum_required(VERSION 3.15)
 project(interview_accumulate)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 14)
 
-add_executable(interview_accumulate main.cpp functions.h functions.cpp)
+include_directories(.)
+
+add_executable(interview_accumulate
+        functions.cpp
+        functions.h
+        main.cpp)
