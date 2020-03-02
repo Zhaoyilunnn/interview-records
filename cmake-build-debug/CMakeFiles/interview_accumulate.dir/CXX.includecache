@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/cygdrive/d/Program_Cpp/interview_accumulate/functions.cpp
+functions.h
+/cygdrive/d/Program_Cpp/interview_accumulate/functions.h
+
+/cygdrive/d/Program_Cpp/interview_accumulate/functions.h
+vector
+-
+string
+-
+

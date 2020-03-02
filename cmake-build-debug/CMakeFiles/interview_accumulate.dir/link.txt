@@ -1,0 +1,1 @@
+/usr/bin/c++.exe -g  -Wl,--enable-auto-import CMakeFiles/interview_accumulate.dir/main.cpp.o CMakeFiles/interview_accumulate.dir/functions.cpp.o  -o interview_accumulate.exe -Wl,--out-implib,libinterview_accumulate.dll.a -Wl,--major-image-version,0,--minor-image-version,0 
