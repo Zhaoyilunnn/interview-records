@@ -117,9 +117,7 @@ vector<int> insertSort(vector<int>& vctIn) {
             result.push_back(vctIn[i]);
         else {
             for (j = 0; j < result.size(); j++) {
-                if (result[j] < vctIn[i])
-                    continue;
-                else {
+                if (result[j] >= vctIn[i]) {
                     result.insert(result.begin() + j, vctIn[i]);
                     break;
                 }
@@ -130,5 +128,63 @@ vector<int> insertSort(vector<int>& vctIn) {
     }
     return result;
 }
+
+
+/**********************************************/
+/* Solution 1: traverse list and get the position */
+/* Solution 2: Use two pointer */
+/**********************************************/
+listNode *deleteLastNNode(listNode *head, int n) {
+    if (!head)
+        return nullptr;
+    int len = 0;
+    listNode* p = head;
+    vector<listNode*> vct_addresses;
+    while (p->next) {
+        vct_addresses.push_back(p);
+        p = p->next;
+        len++;
+    }
+    vct_addresses.push_back(nullptr);
+    int m = len - n;
+    if (m > 0) {
+        vct_addresses[m-1]->next = vct_addresses[m+1];
+        vct_addresses[m]->next = nullptr;
+        return head;
+    } else if (m == 0) {
+        listNode* temp = head->next;
+        head->next = nullptr;
+        return temp;
+    } else
+        return nullptr;
+}
+
+listNode *deleteLastNNodePlus(listNode *head, int n) {
+    listNode* p_first = head;
+    listNode* p_second = head;
+    for (int i = 0; p_first != nullptr && i < n; p_first = p_first->next, i++) {
+        if (i == n)
+            break;
+    }
+    if (!p_first)
+        return nullptr;
+    listNode* prev = nullptr;
+    while (p_first->next) {
+        prev = p_second;
+        p_second = p_second->next;
+        p_first = p_first->next;
+    }
+    if (prev) {
+        prev->next = p_second->next;
+        p_second->next = nullptr;
+        return head;
+    } else {
+        prev = p_second->next; // 此时用prev作为临时变量
+        p_second->next = nullptr;
+        return prev;
+    }
+}
+
+
 
 
