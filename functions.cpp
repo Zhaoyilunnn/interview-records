@@ -185,6 +185,78 @@ listNode *deleteLastNNodePlus(listNode *head, int n) {
     }
 }
 
+int sum(vector<int>& nums) {
+    int res = 0;
+    for (auto num : nums) {
+        if (num > 0)
+            res++;
+    }
+    return res;
+}
 
+int minimumPart(vector<int>& nums) {
+    int res = 0;
+    bool int_flag = false; // 表示当前是否存在整牌
+    for (int i = 0; i < 8; i++) {
+        vector<int> temp = nums;
+        bool flag = true;
+        int temp_res = 0;
+
+        // 检查是否存在连对
+        for (int j = i; j < i+3; j++) {
+            if (temp[j] != 2) {
+                flag = false;
+                break;
+            } else
+                temp[j] -= 2;
+        }
+        if (flag) {
+            int_flag = true;
+            temp_res = 1 + minimumPart(temp);
+            if (res == 0 || temp_res < res)
+                res = temp_res;
+        }
+
+        if (i < 6) {
+            temp = nums;
+            flag = true;
+            // 检查是否存在顺子
+            for (int j = i; j < i+5; j++) {
+                if (temp[j] == 0) {
+                    flag = false;
+                    break;
+                } else
+                    temp[j]--;
+            }
+            if (flag) {
+                int_flag = true;
+                temp_res = 1 + minimumPart(temp);
+                if (res == 0 || temp_res < res)
+                    res = temp_res;
+            }
+        }
+    }
+    if (!int_flag)
+        return sum(nums); // 如果不存在整牌返回数组中大于零的元素的个数
+    else
+        return res;
+}
+
+int minimumNumber(vector<int>& nums) {
+    vector<int> first;
+    vector<int> second;
+    // 将数组分成两个
+    for (auto num : nums) {
+        if (num > 2) {
+            first.push_back(2);
+            second.push_back(num - 2);
+        }
+        else {
+            first.push_back(num);
+            second.push_back(0);
+        }
+    }
+    return minimumPart(first) + minimumPart(second);
+}
 
 

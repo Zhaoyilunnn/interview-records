@@ -42,12 +42,18 @@ int main() {
    // else
    //     cout << "The tree is asymmetrical" << endl;
 
-    // test reverseStr --> ByteDance -- 03/02/2020
-   // string strTest = "@@hello@world@";
-   // auto strRes = reverseStr(strTest);
-
-    // test insert sort --> ByteDance -- 03/02/2020
+    /*test reverseStr --> ByteDance -- 03/02/2020*/
+/*
+    string strTest = "@@hello@world@";
+    auto strRes = reverseStr(strTest);
+*/
+   /* test insert sort --> ByteDance -- 03/02/2020*/
+/*
     vector<int> vctTest = {3, 4, 6, 7, 7, 6, 11, 1, 3, 5, 7, 9};
     vector<int> vctRes = insertSort(vctTest);
+*/
+    vector<int> test = {4, 2, 2, 3, 2, 2, 2, 2, 1, 1};
+    int res = minimumNumber(test);
     return 0;
+
 }

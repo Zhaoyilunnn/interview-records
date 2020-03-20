@@ -6,13 +6,15 @@
 
 #IncludeRegexTransform: 
 
-/cygdrive/d/Program_Cpp/interview_accumulate/functions.cpp
-functions.h
-/cygdrive/d/Program_Cpp/interview_accumulate/functions.h
-
 /cygdrive/d/Program_Cpp/interview_accumulate/functions.h
 vector
 -
 string
 -
+
+/cygdrive/d/Program_Cpp/interview_accumulate/main.cpp
+iostream
+-
+functions.h
+/cygdrive/d/Program_Cpp/interview_accumulate/functions.h
 
