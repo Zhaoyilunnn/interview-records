@@ -185,16 +185,36 @@ listNode *deleteLastNNodePlus(listNode *head, int n) {
     }
 }
 
+int binarySearch(vector<int>& nums, int num) {
+    int low = 0;
+    int high = nums.size() - 1;
+    while (low <= high) {
+        int mid = (low + high) / 2;   // 取中间位置直接折中就行了不要写成 low + (high - low) / 2
+        if (nums[mid] == num)
+            return mid;
+        else if (nums[mid] < num)
+            low = mid + 1;  // 注意这里要 +1
+        else
+            high = mid - 1;  // 注意 -1
+    }
+    return -1;
+}
+
+/*******************************************************************************/
+
+
+
+
 int sum(vector<int>& nums) {
     int res = 0;
     for (auto num : nums) {
         if (num > 0)
-            res++;
+            res += (num+1)/2;
     }
     return res;
 }
 
-int minimumPart(vector<int>& nums) {
+/*int minimumPart(vector<int>& nums) {
     int res = 0;
     bool int_flag = false; // 表示当前是否存在整牌
     for (int i = 0; i < 8; i++) {
@@ -240,23 +260,54 @@ int minimumPart(vector<int>& nums) {
         return sum(nums); // 如果不存在整牌返回数组中大于零的元素的个数
     else
         return res;
-}
+}*/
 
 int minimumNumber(vector<int>& nums) {
-    vector<int> first;
-    vector<int> second;
-    // 将数组分成两个
-    for (auto num : nums) {
-        if (num > 2) {
-            first.push_back(2);
-            second.push_back(num - 2);
+    int res = 0;
+    bool int_flag = false; // 表示当前是否存在整牌
+    for (int i = 0; i < 8; i++) {
+        vector<int> temp = nums;
+        bool flag = true;
+        int temp_res = 0;
+
+        // 检查是否存在连对
+        for (int j = i; j < i+3; j++) {
+            if (temp[j] != 2) {
+                flag = false;
+                break;
+            } else
+                temp[j] -= 2;
         }
-        else {
-            first.push_back(num);
-            second.push_back(0);
+        if (flag) {
+            int_flag = true;
+            temp_res = 1 + minimumNumber(temp);
+            if (res == 0 || temp_res < res)
+                res = temp_res;
+        }
+
+        if (i < 6) {
+            temp = nums;
+            flag = true;
+            // 检查是否存在顺子
+            for (int j = i; j < i+5; j++) {
+                if (temp[j] == 0) {
+                    flag = false;
+                    break;
+                } else
+                    temp[j]--;
+            }
+            if (flag) {
+                int_flag = true;
+                temp_res = 1 + minimumNumber(temp);
+                if (res == 0 || temp_res < res)
+                    res = temp_res;
+            }
         }
     }
-    return minimumPart(first) + minimumPart(second);
+    if (!int_flag)
+        return sum(nums); // 如果不存在整牌返回数组中大于零的元素的个数
+    else
+        return res;
 }
 
 

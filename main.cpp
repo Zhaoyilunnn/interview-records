@@ -52,7 +52,7 @@ int main() {
     vector<int> vctTest = {3, 4, 6, 7, 7, 6, 11, 1, 3, 5, 7, 9};
     vector<int> vctRes = insertSort(vctTest);
 */
-    vector<int> test = {4, 2, 2, 3, 2, 2, 2, 2, 1, 1};
+    vector<int> test = {3, 3, 3, 3, 3, 3, 3, 3, 3, 3};
     int res = minimumNumber(test);
     return 0;
 
