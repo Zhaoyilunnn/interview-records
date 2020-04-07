@@ -311,3 +311,110 @@ int minimumNumber(vector<int>& nums) {
 }
 
 
+/*****************************************************************/
+/* Solution:  */
+/*****************************************************************/
+int minOperations(string& str1, string& str2) {
+    int res = 0;
+    for (int i = 0; i < str1.size(); i++) {
+        if (str1[i] != str2[i]) {
+            bool flag = true;
+            for (int j = i+1; j < str1.size(); j++) {
+                if (str1[j] != str1[i] && str2[j] != str2[i]) {
+                    char temp = str1[j];
+                    str1[j] = str1[i];
+                    str1[i] = temp;
+                    flag = false;
+                    res++;
+                    break;
+                }
+            }
+            if (flag) {
+                str1[i] = str2[i];
+                res++;
+            }
+        }
+    }
+    return res;
+}
+
+
+double rate(int a, int b) {
+    vector<double> init(b+1, 0);
+    vector<vector<double>> stores(a+1, init);
+    for (int i = 0; i < a; i++) {
+        for (int j = 0; j < b; j++) {
+            if (i == 0 && j == 0)
+                stores[i][j] = 0.0;
+            if (i == 0)
+                stores[i][j] = 0.0;
+            if (j == 0)
+                stores[i][j] = 1.0;
+        }
+    }
+    return stores[a][b];
+}
+
+int maxStringLength(vector<string> &Str, int num) {
+    vector<string> init;
+    vector<vector<string>> strMap(26, init);
+    for (auto ch : Str)
+        strMap[ch[0] - 'a'].push_back(ch);
+    // DFS
+    int result = 0;
+    int temp = 0;
+    stack<pair<int, int>> combinations;
+    // push the first set of element;
+    for (int i = 0; i < strMap.size(); i++) {
+        if (!strMap[i].empty()) {
+            for (int j = 0; j < strMap[i].size(); j++)
+                combinations.push(make_pair(i, j));
+            break;
+        }
+    }
+
+    // how to store the length??
+    vector<int> lengths;
+    while (!combinations.empty()) {
+        int m = combinations.top().first;
+        int n = combinations.top().second;
+        string word = strMap[m][n];
+        temp += word.size();
+        combinations.pop();
+
+        bool flag = true;  // whether reach the end of the graph
+        for (int i = word[word.size()-1] - 'a'; i < 26; i++) {
+            if (!strMap[i].empty()) {
+                flag = false;
+                for (int j = 0; j < strMap[i].size(); j++)
+                    combinations.push(make_pair(i, j));
+                break;
+            }
+        }
+        if (flag)
+            temp -= word.size();
+    }
+    return 0;
+}
+
+
+int numRoute(vector<vector<int>>& matrix) {
+    int m = matrix.size();
+    int n = matrix[0].size();
+    int result = 0;
+    vector<int> prev_row;
+    for (int i = 1; i < m; i++) {
+        vector<int> row(n, 0);
+        result = 0;
+        for (int j = 1; j < n; j++) {
+            result += prev_row[j];
+            row.push_back(result);
+        }
+        prev_row = row;
+    }
+    return result;
+}
+
+
+
+

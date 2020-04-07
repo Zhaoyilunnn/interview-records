@@ -7,6 +7,7 @@
 
 #include <vector>
 #include <string>
+#include <stack>
 
 using namespace std;
 
@@ -106,7 +107,8 @@ struct Dep {
 
 
 /********************************************************************/
-/* 给定一组扑克牌从A--10 （A代表1），每张牌最多四张，随机从中抽取一些发给小明
+/* Alibaba inc 数据研发实习生 笔试 2020/03/20
+ * 给定一组扑克牌从A--10 （A代表1），每张牌最多四张，随机从中抽取一些发给小明
  * 出牌方式如下：
  *              1. 单张牌
  *              2. 对子
@@ -124,5 +126,28 @@ int minimumNumber(vector<int>& nums);
  * 例子: 输入4, {aaa, bcd, zzz, bcdef}, 每个元素代表每次弹的字符串
  * 最少次数为11: aaabcdefzzz */
 /*******************************************************************/
+int maxStringLength(vector<string>& Str, int num);
+
+
+/******************************************************************/
+/* 360 笔试, 2020/03/25
+ * 1. Two string only contain 'T' and 'a', convert first string to
+ * second string, you can only exchange two chars or change one char
+ * to another at each time
+ *
+ * 2. 两个数字，第一个代表中奖彩票的数量，第二个代表没中奖的彩票的数量，A先抽，
+ * A每次抽一张，B每次抽一张再仍一张，求A获胜概率 */
+/******************************************************************/
+int minOperations(string& str1, string& str2);
+
+double rate(int a, int b);
+
+
+/******************************************************************/
+/* Description: 给定一个矩阵，求从左上角走到右下角有多少种路径 */
+/******************************************************************/
+int numRoute(vector<vector<int>>& matrix);
+
+
 
 #endif //INTERVIEW_ACCUMULATE_FUNCTIONS_H
