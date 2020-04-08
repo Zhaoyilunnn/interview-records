@@ -1,5 +1,6 @@
 #include <iostream>
 #include <iomanip>
+#include <queue>
 #include "functions.h"
 
 /*********************************************/
@@ -11,10 +12,10 @@ void func(int* &value) {
 }
 
 
+
 int main() {
-    int* value = nullptr;
-    func(value);
-    cout << value << endl;
+
+    double res = rate(2, 3);
 
     return 0;
 }

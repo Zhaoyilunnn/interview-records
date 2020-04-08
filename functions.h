@@ -144,9 +144,26 @@ double rate(int a, int b);
 
 
 /******************************************************************/
-/* Description: 给定一个矩阵，求从左上角走到右下角有多少种路径 */
+/* MSRA ASR --> 2020/04/07
+ * Description: 给定一个矩阵，求从左上角走到右下角有多少种路径 */
 /******************************************************************/
 int numRoute(vector<vector<int>>& matrix);
+
+
+/******************************************************************/
+/* NetEase 2020/04/07
+ * 1. Input a nums (all positive integers), length is N, find k
+ * that a_i+1 - a_i = n * k, n, k are positive integers
+ *
+ * 2. k people numbered from 1 --> k, input N pairs, in which they
+ * can not sit together, output all possible sit sequences
+ *
+ * 3. A man with defence value D, k monsters with value a and b,
+ * if a > D, then the man will get b damage, (the man will always
+ * beat a monster), if a <= D, then the man will not get damage,
+ * once beat a monster, the man's D will add 1, the man can beat
+ * monsters in any order, output the minimum damage in total */
+/******************************************************************/
 
 
 

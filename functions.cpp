@@ -312,7 +312,11 @@ int minimumNumber(vector<int>& nums) {
 
 
 /*****************************************************************/
-/* Solution:  */
+/* Solution:    traverse, if str1[i] != str2[i],
+ *                  for j = i+1 : n
+ *                      if str1[j] != str1[i] && str2[j] != str2[i]
+ *                          swap
+ *                          */
 /*****************************************************************/
 int minOperations(string& str1, string& str2) {
     int res = 0;
@@ -339,17 +343,27 @@ int minOperations(string& str1, string& str2) {
 }
 
 
+/*****************************************************************/
+/* Description: Dynamic programming a[i][j] comes from a[i-1][j-2]
+ * and a[i][j-3] */
+/*****************************************************************/
 double rate(int a, int b) {
     vector<double> init(b+1, 0);
     vector<vector<double>> stores(a+1, init);
-    for (int i = 0; i < a; i++) {
-        for (int j = 0; j < b; j++) {
-            if (i == 0 && j == 0)
-                stores[i][j] = 0.0;
-            if (i == 0)
-                stores[i][j] = 0.0;
-            if (j == 0)
-                stores[i][j] = 1.0;
+    for (int i = 0; i < a+1; i++)
+        stores[i][0] = 1.0;
+    for (int i = 0; i < b+1; i++)
+        stores[0][i] = 0.0;
+    for (int i = 1; i < a+1; i++) {
+        for (int j = 1; j < b+1; j++) {
+            auto x = (double)i;
+            auto y = (double)j;
+            double win_first = x / (x + y);
+            double win_second_1 = 0;
+            double win_second_2 = 0;
+            if (y >= 3) win_second_1 = y / (x + y) * (y - 1) / (x + y - 1) * (y - 2) / (x + y - 2) * stores[i][j-3];
+            if (y >= 2) win_second_2 = y / (x + y) * (y - 1) / (x + y - 1) * x / (x + y - 2) * stores[i-1][j-2];
+            stores[i][j] = win_first + win_second_1 + win_second_2;
         }
     }
     return stores[a][b];
