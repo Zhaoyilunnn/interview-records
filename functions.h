@@ -166,5 +166,59 @@ int numRoute(vector<vector<int>>& matrix);
 /******************************************************************/
 
 
+/*********************************************/
+/* Baidu, 2020/04/13, machine learning
+ * Description: add two string  */
+/*********************************************/
+string addStr(string& s1, string& s2) {
+    string res;
+    int i = s1.size() - 1;
+    int j = s2.size() - 1;
+    int flag = 0;
+    int sum = 0;
+    char curr_digit;
+    while (i >= 0 && j >= 0) {
+        int d1 = s1[i] - '0';
+        int d2 = s2[j] - '0';
+        sum = d1 + d2 + flag;
+        if (sum >= 10) {
+            curr_digit = sum - 10 + '0';
+            flag = 1;
+        } else {
+            curr_digit = sum + '0';
+            flag = 0;
+        }
+        res.insert(res.begin(), curr_digit);
+        i--;
+        j--;
+    }
+    while (i >= 0) {
+        sum = s1[i] - '0' + flag;
+        if (sum >= 10) {
+            res.insert(res.begin(), sum - 10 + '0');
+            flag = 1;
+        }
+        else {
+            res.insert(res.begin(), sum + '0');
+            flag = 0;
+        }
+        i--;
+    }
+    while (j >= 0) {
+        sum = s2[j] - '0' + flag;
+        if (sum >= 10) {
+            res.insert(res.begin(), sum - 10 + '0');
+            flag = 1;
+        }
+        else {
+            res.insert(res.begin(), sum + '0');
+            flag = 0;
+        }
+        j--;
+    }
+    if (flag) res.insert(res.begin(), '1');
+    return res;
+}
+
 
 #endif //INTERVIEW_ACCUMULATE_FUNCTIONS_H
