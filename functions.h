@@ -8,6 +8,7 @@
 #include <vector>
 #include <string>
 #include <stack>
+#include <set>
 
 using namespace std;
 
@@ -170,55 +171,20 @@ int numRoute(vector<vector<int>>& matrix);
 /* Baidu, 2020/04/13, machine learning
  * Description: add two string  */
 /*********************************************/
-string addStr(string& s1, string& s2) {
-    string res;
-    int i = s1.size() - 1;
-    int j = s2.size() - 1;
-    int flag = 0;
-    int sum = 0;
-    char curr_digit;
-    while (i >= 0 && j >= 0) {
-        int d1 = s1[i] - '0';
-        int d2 = s2[j] - '0';
-        sum = d1 + d2 + flag;
-        if (sum >= 10) {
-            curr_digit = sum - 10 + '0';
-            flag = 1;
-        } else {
-            curr_digit = sum + '0';
-            flag = 0;
-        }
-        res.insert(res.begin(), curr_digit);
-        i--;
-        j--;
-    }
-    while (i >= 0) {
-        sum = s1[i] - '0' + flag;
-        if (sum >= 10) {
-            res.insert(res.begin(), sum - 10 + '0');
-            flag = 1;
-        }
-        else {
-            res.insert(res.begin(), sum + '0');
-            flag = 0;
-        }
-        i--;
-    }
-    while (j >= 0) {
-        sum = s2[j] - '0' + flag;
-        if (sum >= 10) {
-            res.insert(res.begin(), sum - 10 + '0');
-            flag = 1;
-        }
-        else {
-            res.insert(res.begin(), sum + '0');
-            flag = 0;
-        }
-        j--;
-    }
-    if (flag) res.insert(res.begin(), '1');
-    return res;
-}
+string addStr(string& s1, string& s2);
 
+/*********************************************************/
+/* Aiqiyi, 2020/04/
+ * 判断链表是否有环
+ *      1. Hash_set
+ *      2. 快慢指针*/
+/*********************************************************/
+struct ListNode {
+    int val;
+    ListNode* next;
+    ListNode(int x) : val(x) {}
+};
+
+bool IsCircleList(ListNode* head);
 
 #endif //INTERVIEW_ACCUMULATE_FUNCTIONS_H
