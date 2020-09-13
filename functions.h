@@ -9,6 +9,8 @@
 #include <string>
 #include <stack>
 #include <set>
+#include <unordered_map>
+#include <cmath>
 
 using namespace std;
 
@@ -186,5 +188,90 @@ struct ListNode {
 };
 
 bool IsCircleList(ListNode* head);
+
+/**
+ * 字节跳动秋招2021届
+ * 在n个正整数中，任意挑选k(0<=k<=n)个数字的和记位sum, 另有一个正整数m，请问sum % m最大是多少
+ * 输入：
+ *      第一行是两个正整数，分别为n, m
+ *      第二行为n个正整数
+ * @param nums
+ * @param m
+ * @return
+ */
+int maxRemainder(vector<int>& nums, int m);
+
+
+/**
+ * 华为校招2021届
+ * 输入：第一行为二叉树的节点数量N，
+ *      第二行为每个节点的深度
+ * 输出：可能的二叉树的数量
+ * @param nums
+ * @return
+ */
+int numTrees(vector<int>& nums);
+
+
+/**
+ * 小红书2020届校招
+ * 薯队长带着小红薯参加密室逃脱团建游戏，首先遇到了反转游戏，小红薯们根据游戏提示收集了多个单词线索，
+ * 并将单词按要求加一个空格组 成了句子，最终要求把句子按单词反转解密。 说明：收集的时候单词前后可能会有多个空格，反转后单词不能有多个空格
+ * @param str
+ * @return
+ */
+string reverseStr(const string& str);
+
+
+/**
+ * 小红书2020届校招
+ * 输入n篇笔记，编号从1-n和每篇的点赞数
+ * 输出笔记数量和最高点赞数
+ * 要求：不能出现连续编号的笔记
+ * @param num
+ * @param nums
+ * @return
+ */
+pair<int, int> numGood(int num, vector<int>& nums);
+
+
+/**
+ * 猿辅导2021校招
+ * 给定数字n，表示从1-n猜数，k表示有k次免费猜的机会，当不免费的时候，猜一个数，如果猜对了可以知道数字猜大了还是小了，但是要花费
+ * 这个数字对应的金币数量。现在给定n，k，求需要多少金币可以确保游戏胜利
+ */
+
+
+/**
+ * 百度地图2021校招二面
+ * 给定一个无序的数组，写一个建立平衡二叉树的函数，和一个查找元素并打印查找路径的函数
+ */
+struct TreeNode {
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+};
+TreeNode* buildTree(vector<int>& nums, int l, int r);
+vector<int> findVal(TreeNode* root, int val);
+
+/**
+ * 百度2021校招笔试
+ * 一个NXN棋盘，从左上角走到右下角，每次可以走上下左右四个方向中的一步，每个格子有一个1，2，3，4中的值，每走一步的消耗是两个格子中的差值的绝对值
+ * 求问最小消耗值
+ */
+
+/**
+ * 腾讯2021校招笔试
+ * 求数组的最长山谷序列，山谷序列例如 5 4 2 1 1 4 6 7
+ */
+int maxValley(vector<int>& nums);
+
+/**
+ * vivo2021校招笔试
+ * 一个NXN的棋盘，除了‘#’和‘@’是障碍其他地方可以随意走，可以走上下左右，现在给定起点和终点，求最短路径
+ */
+int bestPath(int x1, int y1, int x2, int y2, vector<string>& matrix);
+
 
 #endif //INTERVIEW_ACCUMULATE_FUNCTIONS_H

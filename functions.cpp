@@ -491,3 +491,211 @@ bool isCircleList(ListNode* head) {
     }
     return false;
 }
+
+
+int maxRemainder(vector<int>& nums, int m) {
+    int n = nums.size();
+    int res = 0;
+    vector<bool> dp(m, false);
+    dp[0] = true;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            if (dp[j]) {
+                int temp = (nums[i] + j) % m;
+                dp[temp] = true;
+            }
+        }
+    }
+    for (int i = m - 1; i >= 0; i--) {
+        if (dp[i]) return i;
+    }
+    return res;
+}
+
+
+int select(int N, int M) {
+    int res = N;
+    for (int i = N - 1; i > M; i--) {
+        res *= i;
+    }
+    for (int j = N - M; j > 1; j--) {
+        res /= j;
+    }
+    return res;
+}
+
+int numTrees(vector<int>& nums) {
+    int N = nums.size();
+    unordered_map<int, int> level_num;
+    int depth = 0;
+    for (int i = 0; i < N; i++) {
+        auto it = level_num.find(nums[i]);
+        depth = max(depth, nums[i]);
+        if (it == level_num.end()) level_num.emplace(nums[i], 1);
+        else it->second++;
+    }
+    int res = 1;
+    int pre = 1;
+    for (int i = 1; i <= depth; i++) {
+        auto it = level_num.find(i);
+        if (it == level_num.end()) return 0;
+        if (it->second == 2 * pre) {
+            pre = it->second;
+            continue;
+        }
+        int multiple = select(2*pre, it->second);
+        res *= multiple;
+        pre = it->second;
+    }
+    return res % ((int)pow(10, 9) + 7);
+}
+
+
+string reverseStr(const string& str) {
+    string res;
+    int start = str.size() - 1, end = str.size() - 1;
+    while (end >= 0) {
+        if (str[end] != ' ') break;
+        end--;
+    }
+    start = end;
+    int i = end;
+    while (i >= 0) {
+        if (end >= start) {
+            if (str[i] != ' ') start--;
+            else {
+                res.insert(res.end(), str.begin() + start + 1, str.begin() + end + 1);
+                res.push_back(' ');
+                end = start;
+                start++;
+                i++;
+            }
+        } else {
+            if (str[i] != ' ') {
+                start = end;
+                i++;
+            }
+            else end--;
+        }
+        i--;
+    }
+    if (str[0] != ' ') res.insert(res.end(), str.begin() + start + 1, str.begin() + end + 1);
+    return res;
+}
+
+
+pair<int, int> numGood(int num, vector<int>& nums) {
+    vector<pair<int, int>> dp(num, make_pair(0, 0));
+    for (int i = 0; i < nums.size(); i++) {
+        if (i == 0) dp[0] = make_pair(nums[0], 1);
+        else if (i == 1) dp[1] = make_pair(max(nums[0], nums[1]), 1);
+        else {
+            int temp = dp[i - 2].first + nums[i];
+            if (temp > dp[i - 1].first) {
+                dp[i].first = temp;
+                dp[i].second = dp[i - 2].second + 1;
+            } else if (temp == dp[i - 1].first) {
+                dp[i].first = temp;
+                dp[i].second = min(1 + dp[i - 2].second, dp[i - 1].second);
+            } else {
+                dp[i] = dp[i - 1];
+            }
+        }
+    }
+    return dp[num - 1];
+}
+
+
+TreeNode* buildTree(vector<int>& nums, int l, int r) {
+    if (l > r) return nullptr;
+    int mid = (l + r) / 2;
+    TreeNode* root = new TreeNode(nums[mid]);
+    root->left = buildTree(nums, l, mid - 1);
+    root->right = buildTree(nums, mid + 1, r);
+    return root;
+}
+
+vector<int> findVal(TreeNode* root, int val) {
+    TreeNode* p = root;
+    vector<int> res;
+    while (p) {
+        res.push_back(p->val);
+        if (p->val == val) break;
+        else if (p->val > val) p = p->left;
+        else p = p->right;
+    }
+    return res;
+}
+
+
+/**
+ * 思路：
+ *      从前往后和从后往前分别求最长下降序列down[]和up[]
+ *      for i = 0 : n - 1:
+ *          for j = i + 1 : n - 1:
+ *              if nums[i] == nums[j]:
+ *                  res = max(res, 2 * min(down[i], up[j]))
+ * @param nums
+ * @return
+ */
+int maxValley(vector<int>& nums) {
+    int n = nums.size();
+    vector<int> down(n, 0);
+    vector<int> up(n, 0);
+    for (int i = 0; i < n; i++) {
+        if (i == 0) {
+            down[0] = 1;
+            up[n - 1] = 1;
+        }
+        else {
+            int temp1 = 0;
+            int temp2 = 0;
+            for (int j = 0; j < i; j++) {
+                if (nums[i] < nums[j]) temp1 = max(down[j], temp1);
+                if (nums[n - 1 - i] < nums[n - 1 - j]) temp2 = max(up[n - 1 - j], temp2);
+            }
+            down[i] = temp1 + 1;
+            up[n - 1 - i] = temp2 + 1;
+        }
+    }
+    int res = 0;
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j < n; j++) {
+            if (nums[i] == nums[j]) {
+                res = max(res, 2 * min(down[i], up[j]));
+            }
+        }
+    }
+    return res;
+}
+
+
+vector<vector<int>> directs = {{0, 1}, {-1, 0}, {0, -1}, {1, 0}};
+
+void dfs(int x, int y, int x2, int y2, int n, int cur_res, int& res, vector<vector<int>>& visited, vector<string>& matrix) {
+    if (res >= 0 && cur_res >= res) return;
+    if (x == x2 && y == y2) {
+        if (res < 0) res = cur_res;
+        else res = min(cur_res, res);
+        return;
+    }
+    for (auto d : directs) {
+        int a = x + d[0], b = y + d[1];
+        if (a >= 0 && a < n && b >= 0 && b < n && !visited[a][b] && matrix[a][b] != '#' && matrix[a][b] != '@') {
+            visited[a][b] = 1;
+            dfs(a, b, x2, y2, n, cur_res + 1, res, visited, matrix);
+            visited[a][b] = 0;
+        }
+    }
+}
+
+
+int bestPath(int x1, int y1, int x2, int y2, vector<string>& matrix) {
+    int res = -1;
+    int cur_res = 0;
+    int n = matrix.size();
+    vector<vector<int>> visited(n, vector<int>(n, 0));
+    visited[x1][y1] = 1;
+    dfs(x1, y1, x2, y2, n, cur_res, res, visited, matrix);
+    return res;
+}
