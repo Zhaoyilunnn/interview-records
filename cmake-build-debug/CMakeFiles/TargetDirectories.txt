@@ -1,3 +1,0 @@
-/cygdrive/d/Program_Cpp/interview_accumulate/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/cygdrive/d/Program_Cpp/interview_accumulate/cmake-build-debug/CMakeFiles/interview_accumulate.dir
-/cygdrive/d/Program_Cpp/interview_accumulate/cmake-build-debug/CMakeFiles/edit_cache.dir
