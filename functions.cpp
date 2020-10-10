@@ -699,3 +699,32 @@ int bestPath(int x1, int y1, int x2, int y2, vector<string>& matrix) {
     dfs(x1, y1, x2, y2, n, cur_res, res, visited, matrix);
     return res;
 }
+
+
+
+vector<int> maxIncreaseSequence(vector<int>& nums) {
+    int n = nums.size();
+    vector<vector<int>> dp(n, vector<int>());
+    vector<int> res;
+    for (int i = 0; i < n; i++) {
+        dp[i] = {nums[i]};
+    }
+    for (int i = 0; i < n; i++) {
+        int l = dp[i].size();
+        for (int j = i + 1; j < n; j++) {
+            if (nums[j] >= dp[i][l - 1] && dp[j].size() < l + 1) {
+                vector<int> temp = dp[i];
+                temp.push_back(nums[j]);
+                dp[j] = temp;
+            }
+        }
+    }
+    int max_length = 0;
+    for (const auto& d : dp) {
+        if (d.size() > max_length) {
+            max_length = d.size();
+            res = d;
+        }
+    }
+    return res;
+}

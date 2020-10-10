@@ -273,5 +273,23 @@ int maxValley(vector<int>& nums);
  */
 int bestPath(int x1, int y1, int x2, int y2, vector<string>& matrix);
 
+/**
+ * freeWheel2021校招笔试
+ * 一个长为L（整数）的杆，给定cutpoints的列表，（也是整数）在每个位置cut，cost为当前线段的长度，问所能得到的最小的cost是多少
+ * 例子
+ * L=7, cutpoints = {1, 3, 4, 5}, res = 16
+ * 解释：cut 3, cost = 7; cut 1, cost += 3; cut 5, cost += 4; cut 4, cost += 2; cost = 7 + 3 + 4 + 2 = 16
+ */
+
+/**
+ * 字节2021校招笔试第五场
+ * 无向无环图，每个节点有正面和反面，给定一个无向无环图，判断能否通过翻转使图变得完美（全是正面全是反面），每次翻转可以翻转当前节点和其相邻的节点
+ */
+
+/**
+ * 美团2021面试-语音算法 ： 最长上升子序列
+ * TODO: 实现贪心加二分查找
+ */
+vector<int> maxIncreaseSequence(vector<int>& nums);
 
 #endif //INTERVIEW_ACCUMULATE_FUNCTIONS_H
